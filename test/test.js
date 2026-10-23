@@ -14,4 +14,11 @@ describe('GET /', () => {
 
     expect(response.text).to.equal('Hello, GitHub Actions!');
   });
+
+  it('returns HTTP 200 for the health endpoint', async () => {
+    const response = await request(app).get('/health');
+
+    expect(response.status).to.equal(200);
+    expect(response.text).to.equal('OK');
+  });
 });
