@@ -21,23 +21,24 @@ jobs:
           node-version: 24
         
       - name: Enable Corepack
-        run: corepack enable
-        
+        run: |
+          corepack enable
+          corepack prepare yarn@4.18.1 --activate
+
       - name: Check Yarn version
-        run: corepack yarn --version
-        
+        run: yarn --version
 
       - name: Install dependencies
-        run: corepack yarn install --immutable
+        run: yarn install --immutable
 
       - name: Run ESLint
-        run: corepack yarn lint
+        run: yarn lint
 
       - name: Run tests
-        run: corepack yarn test
+        run: yarn test
 
       - name: Generate code coverage
-        run: corepack yarn coverage
+        run: yarn coverage
 
       - name: Upload coverage HTML report
         if: always()
